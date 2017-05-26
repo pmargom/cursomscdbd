@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 
 namespace Database
 {
-    public class Db
+    public static class Db
     {
-        private SqlConnection conexion = null;
+        private static SqlConnection conexion = null;
 
-        public void Conectar()
+        public static void Conectar()
         {
             try
             {
@@ -62,23 +62,23 @@ namespace Database
             }
         }
 
-        public bool EstaLaConexionAbierta()
+        public static bool EstaLaConexionAbierta()
         {
             return conexion.State == ConnectionState.Open;
         }
 
-        public void Desconectar()
+        public static void Desconectar()
         {
-            if (this.conexion !=null)
+            if (conexion !=null)
             {
-                if (this.conexion.State != ConnectionState.Closed)
+                if (conexion.State != ConnectionState.Closed)
                 {
-                    this.conexion.Close();
+                    conexion.Close();
                 }
             }
         }
 
-        public List<Usuario> DameLosUsuarios()
+        public static List<Usuario> DameLosUsuarios()
         {
             //Usuario[]     usuarios = null;
             List<Usuario> usuarios = null;
@@ -112,7 +112,7 @@ namespace Database
             return usuarios;
         }
 
-        public void InsertarUsuario(Usuario usuario)
+        public static void InsertarUsuario(Usuario usuario)
         {
             // PREPARO LA CONSULTA SQL PARA INSERTAR AL NUEVO USUARIO
             string consultaSQL = @"INSERT INTO Users (
@@ -137,7 +137,7 @@ namespace Database
             comando.ExecuteNonQuery();
         }
 
-        public void EliminarUsuario(string email)
+        public static void EliminarUsuario(string email)
         {
             // PREPARO LA CONSULTA SQL PARA INSERTAR AL NUEVO USUARIO
             string consultaSQL = @"DELETE FROM Users 
@@ -149,7 +149,7 @@ namespace Database
             comando.ExecuteNonQuery();
         }
 
-        public void ActualizarUsuario(Usuario usuario)
+        public static void ActualizarUsuario(Usuario usuario)
         {
             // PREPARO LA CONSULTA SQL PARA INSERTAR AL NUEVO USUARIO
             string consultaSQL = @"UPDATE Users ";

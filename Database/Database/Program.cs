@@ -8,10 +8,9 @@ namespace Database
         static void Main(string[] args)
         {
             Console.WriteLine("Conectando a la base de datos");
-            Db database = new Db();
-            database.Conectar();
+            Db.Conectar();
 
-            if (database.EstaLaConexionAbierta())
+            if (Db.EstaLaConexionAbierta())
             {
                 Usuario nuevoUsuario = new Usuario()
                 {
@@ -27,19 +26,19 @@ namespace Database
                     deleted = false,
                     isAdmin = false,
                 };
-                database.InsertarUsuario(nuevoUsuario);
+                Db.InsertarUsuario(nuevoUsuario);
                 Console.WriteLine("Usuario insertado, pulsa una tecla para continuar...");
                 Console.ReadKey();
 
                 nuevoUsuario.firstName += " modificado!!";
-                database.ActualizarUsuario(nuevoUsuario);
+                Db.ActualizarUsuario(nuevoUsuario);
                 Console.WriteLine("Usuario actualizado, pulsa una tecla para continuar...");
                 Console.ReadKey();
 
-                database.EliminarUsuario("kk3@kk.com");
+                Db.EliminarUsuario("kk3@kk.com");
                 Console.WriteLine("Usuario eliminado, pulsa una tecla para continuar...");
 
-                List<Usuario> listaUsuarios = database.DameLosUsuarios();
+                List<Usuario> listaUsuarios = Db.DameLosUsuarios();
                 listaUsuarios.ForEach(usuario => 
                 {
                     Console.WriteLine(
@@ -59,8 +58,7 @@ namespace Database
                             );
                 });
             }
-            database.Desconectar();
-            database = null;
+            Db.Desconectar();
             Console.ReadKey();
         }
     }
