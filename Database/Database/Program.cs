@@ -12,14 +12,24 @@ namespace Database
 
             if (Db.EstaLaConexionAbierta())
             {
-                List<MarcasNCoches> lista = Db.DameListaMarcasNCoches();
-                lista.ForEach(elemento => 
+                //List<MarcasNCoches> lista = Db.DameListaMarcasNCoches();
+                //lista.ForEach(elemento => 
+                //{
+                //    Console.WriteLine(
+                //            " Marca: " + elemento.marca
+                //            +
+                //            " Nº de coches: " + elemento.nCoches
+                //            );
+                //});
+
+                List<Coche> listaCoches = Db.DameListaCochesConProcedimientoAlmacenado();
+                listaCoches.ForEach(coche =>
                 {
                     Console.WriteLine(
-                            " Marca: " + elemento.marca
-                            +
-                            " Nº de coches: " + elemento.nCoches
-                            );
+                        @"Matrícula: " + coche.matricula +
+                        " Marca: " + coche.marca.denominacion
+                        
+                        );
                 });
             }
             Db.Desconectar();
