@@ -2,15 +2,8 @@
 ALTER PROCEDURE GET_COCHE_POR_MARCA
 AS
 BEGIN
-	SELECT COUNT(*) FROM Coches
-	SELECT * FROM Coches
-
-	INSERT INTO Coches (matricula, idMarca, idTipoCombustible, color
-						, cilindrada, nPlazas, fechaMatriculacion)
-	SELECT matricula, idMarca, idTipoCombustible, color
-			, cilindrada, nPlazas, fechaMatriculacion
-	FROM Coches
-
-	SELECT * FROM Coches
+	SELECT Coches.*, Marcas.denominacion as denominacionMarca
+	FROM Marcas
+		INNER JOIN Coches on Marcas.id = Coches.idMarca
 	--PRINT 'MI PRIMER PROCEDIMIENTO ALMACENADO'
 END
