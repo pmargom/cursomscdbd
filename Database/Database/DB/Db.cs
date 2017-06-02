@@ -15,7 +15,7 @@ namespace Database
             {
                 // PREPARO LA CADENA DE CONEXIÓN A LA BD
                 string cadenaConexion = @"Server=.\sqlexpress;
-                                          Database=testdb;
+                                          Database=carrental;
                                           User Id=testuser;
                                           Password=!Curso@2017;";
 
@@ -110,6 +110,29 @@ namespace Database
 
             // DEVUELVO LOS DATOS
             return usuarios;
+        }
+
+        public static List<MarcasNCoches> DameListaMarcasNCoches()
+        {
+            List<MarcasNCoches> resultados = new List<MarcasNCoches>();
+            // PREPARO LA CONSULTA SQL PARA OBTENER LOS USUARIOS
+            string consultaSQL = "SELECT * FROM V_N_COCHES_POR_MARCA;";
+            // PREPARO UN COMANDO PARA EJECUTAR A LA BASE DE DATOS
+            SqlCommand comando = new SqlCommand(consultaSQL, conexion);
+            // RECOJO LOS DATOS
+            SqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                resultados.Add(new MarcasNCoches()
+                {
+                    marca = reader["Marca"].ToString(),
+                    nCoches = (int)reader["nCoches"]
+                });
+            }
+
+            // DEVUELVO LOS DATOS
+            return resultados;
         }
 
         public static void InsertarUsuario(Usuario usuario)

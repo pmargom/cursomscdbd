@@ -12,6 +12,27 @@ namespace Database
 
             if (Db.EstaLaConexionAbierta())
             {
+                List<MarcasNCoches> lista = Db.DameListaMarcasNCoches();
+                lista.ForEach(elemento => 
+                {
+                    Console.WriteLine(
+                            " Marca: " + elemento.marca
+                            +
+                            " Nº de coches: " + elemento.nCoches
+                            );
+                });
+            }
+            Db.Desconectar();
+            Console.ReadKey();
+        }
+
+        public static void ObtenerUsuarios()
+        {
+            Console.WriteLine("Conectando a la base de datos");
+            Db.Conectar();
+
+            if (Db.EstaLaConexionAbierta())
+            {
                 Usuario nuevoUsuario = new Usuario()
                 {
                     //hiddenId = 0,
@@ -39,7 +60,7 @@ namespace Database
                 Console.WriteLine("Usuario eliminado, pulsa una tecla para continuar...");
 
                 List<Usuario> listaUsuarios = Db.DameLosUsuarios();
-                listaUsuarios.ForEach(usuario => 
+                listaUsuarios.ForEach(usuario =>
                 {
                     Console.WriteLine(
                             " hiddenId: " + usuario.hiddenId
@@ -60,6 +81,7 @@ namespace Database
             }
             Db.Desconectar();
             Console.ReadKey();
+
         }
     }
 }
