@@ -22,33 +22,13 @@ namespace Database
                 //            );
                 //});
 
-                //List<Coche> listaCoches = Db.DameListaCochesConProcedimientoAlmacenado();
-                //listaCoches.ForEach(coche =>
-                //{
-                //    Console.WriteLine(
-                //        @"Matrícula: " + coche.matricula +
-                //        " Marca: " + coche.marca.denominacion +
-                //        " Combustible: " + coche.tipoCombustible.denominacion
-                //        );
-                //});
-
-                //List<Coche> listaCoches = Db.GET_COCHE_POR_MARCA_MATRICULA_PLAZAS();
-                //listaCoches.ForEach(coche =>
-                //{
-                //    Console.WriteLine(
-                //        @"Matrícula: " + coche.matricula +
-                //        " Marca: " + coche.marca.denominacion +
-                //        " NPlazas: " + coche.nPlazas
-                //        );
-                //});
-
-                List<Coche> listaCoches = Db.GET_COCHE_POR_MARCA_MATRICULA_PLAZAS_2("toyota", 4);
+                List<Coche> listaCoches = Db.DameListaCochesConProcedimientoAlmacenado();
                 listaCoches.ForEach(coche =>
                 {
                     Console.WriteLine(
                         @"Matrícula: " + coche.matricula +
                         " Marca: " + coche.marca.denominacion +
-                        " NPlazas: " + coche.nPlazas
+                        " Combustible: " + coche.tipoCombustible.denominacion
                         );
                 });
             }
