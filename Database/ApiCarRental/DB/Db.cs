@@ -343,5 +343,31 @@ namespace ApiCarRental
             // EJECUTO EL COMANDO
             comando.ExecuteNonQuery();
         }
+
+        public static List<Marca> GetMarcas()
+        {
+            List<Marca> resultado = new List<Marca>();
+
+            // PREPARO EL PROCEDIMIENTO A EJECUTAR
+            string procedimiento = "dbo.GetMarcas";
+            // PREPARO EL COMANDO PARA LA BD
+            SqlCommand comando = new SqlCommand(procedimiento, conexion);
+            // INDICO QUE LO QUE VOY A EJECUTAR ES UN PA
+            comando.CommandType = CommandType.StoredProcedure;
+            // EJECUTO EL COMANDO
+            SqlDataReader reader = comando.ExecuteReader();
+            // PROCESO EL RESULTADO Y LO MENTO EN LA VARIABLE
+            while (reader.Read())
+            {
+                Marca marca = new Marca();
+                marca.id = (long)reader["id"];
+                marca.denominacion = reader["denominacion"].ToString();
+                // añadiro a la lista que voy
+                // a devolver
+                resultado.Add(marca);
+            }
+
+            return resultado;
+        }
     }
 }

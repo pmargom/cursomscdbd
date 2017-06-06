@@ -12,5 +12,7 @@ namespace ApiCarRental
         public string error { get; set; }
 
         public List<Coche> data { get; set; }
+
+        public List<Marca> dataMarcas { get; set; }
     }
 }
