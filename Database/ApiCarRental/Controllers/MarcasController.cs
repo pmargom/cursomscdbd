@@ -35,18 +35,30 @@ namespace ApiCarRental.Controllers
             return resultado;
         }
 
-
-
-
-
-
-
-
-
         // GET: api/Marcas/5
-        public string Get(int id)
+        public RespuestaAPI Get(long id)
         {
-            return "value";
+            RespuestaAPI resultado = new RespuestaAPI();
+            List<Marca> listaMarcas = new List<Marca>();
+            try
+            {
+                Db.Conectar();
+
+                if (Db.EstaLaConexionAbierta())
+                {
+                    listaMarcas = Db.GetMarcasPorId(id);
+                }
+                resultado.error = "";
+                Db.Desconectar();
+            }
+            catch
+            {
+                resultado.error = "Se produjo un error";
+            }
+
+            resultado.totalElementos = listaMarcas.Count;
+            resultado.dataMarcas = listaMarcas;
+            return resultado;
         }
 
         // POST: api/Marcas
