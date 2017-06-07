@@ -400,5 +400,26 @@ namespace ApiCarRental
 
             return resultado;
         }
+
+        public static List<TipoCombustible>GetTiposCombustibles()
+        {
+            List<TipoCombustible> resultados = new List<TipoCombustible>();
+            string procedimiento = "dbo.GetTiposCombustibles";
+
+            SqlCommand comando = new SqlCommand(procedimiento, conexion);
+
+            SqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                TipoCombustible tipo = new TipoCombustible();
+                tipo.id = (long)reader["id"];
+                tipo.denominacion = reader["denominacion"].ToString();
+                resultados.Add(tipo);
+            }
+
+
+            return resultados;
+        }
     }
 }

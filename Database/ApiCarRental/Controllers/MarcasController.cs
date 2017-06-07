@@ -64,6 +64,7 @@ namespace ApiCarRental.Controllers
         // POST: api/Marcas
         public void Post([FromBody]string value)
         {
+            string a = value;
         }
 
         // PUT: api/Marcas/5
