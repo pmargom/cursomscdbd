@@ -74,3 +74,26 @@ AS
 BEGIN
 	SELECT id, denominacion FROM Marcas
 END
+
+-- PROCEDIMIENTO PARA OBTENER LOS DATOS DE UNA MARCA POR SU ID
+CREATE PROCEDURE GetMarcasPorId
+	@id bigint
+AS
+BEGIN
+	SELECT id, denominacion FROM Marcas WHERE id = @id
+END
+
+-- PROCEDIMIENTO ALMACENADO PARA LISTAR LOS TIPOS DE COMBUSTIBLE
+CREATE PROCEDURE GetTiposCombustibles
+AS
+BEGIN
+	SELECT id, denominacion FROM TiposCombustible
+END
+
+-- PROCEDIMIENTO PARA INSERTAR UNA NUEVA MARCA
+CREATE PROCEDURE AgregarMarca
+	@denominacion nvarchar(50)
+AS
+BEGIN
+	INSERT INTO Marcas (denominacion) VALUES (@denominacion)
+END

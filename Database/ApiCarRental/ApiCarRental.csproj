@@ -110,8 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="imagenes\loading.gif" />
     <Content Include="Views\addMarca.html" />
     <Content Include="Views\js\marcas.js" />
+    <Content Include="Views\marcas.html" />
+    <Content Include="Views_Back\addMarca.html" />
+    <Content Include="Views_Back\js\marcas.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
