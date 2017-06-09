@@ -74,7 +74,6 @@
     });
 
     $('#btnAddMarca').click(function () {
-        //debugger;
         var nuevaMarca = $('#txtMarcaDenominacion').val();
         var urlAPI = 'http://localhost:52673/api/marcas';
 
@@ -82,9 +81,8 @@
             id: 0,
             denominacion: nuevaMarca
         };
-        debugger;
 
-        $('#imgLoading').className = '';
+        $('#imgLoading').removeClass('oculta-loading');
 
         $.ajax({
             url: urlAPI,
@@ -92,10 +90,12 @@
             dataType: 'json',
             data: dataNuevaMarca,
             success: function (respuesta) {
+                $('#imgLoading').addClass('oculta-loading');
                 GetMarcas();
             },
             error: function (respuesta) {
                 console.log(respuesta);
+                $('#imgLoading').addClass('oculta-loading');
             }
         });
     });
